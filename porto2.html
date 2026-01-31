@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Editing Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: white;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .thumbnail {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .thumbnail:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumbnail::after {
+      content: '▶';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+
+    .thumbnail:hover::after {
+      opacity: 0.9;
+    }
+
+    .thumbnail p {
+      text-align: center;
+      padding: 15px;
+      margin: 0;
+      font-weight: 600;
+      color: #333;
+      font-size: 1.1rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      background: transparent;
+      animation: modalPop 0.3s ease;
+    }
+
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border: none;
+    }
+
+    .close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close:hover {
+      color: #ff4757;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 1.8rem;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">My YouTube Video Editing Portfolio</h1>
+
+  <div class="gallery">
+    <div class="thumbnail" data-video-id="MFMLfO-E2zw">
+      <img src="https://img.youtube.com/vi/MFMLfO-E2zw/hqdefault.jpg" alt="Video 1">
+      <p>Project 1</p>
+    </div>
+    <div class="thumbnail" data-video-id="b6znCcI47vI">
+      <img src="https://img.youtube.com/vi/b6znCcI47vI/hqdefault.jpg" alt="Video 2">
+      <p>Project 2</p>
+    </div>
+    <div class="thumbnail" data-video-id="0ZjhirfcNns">
+      <img src="https://img.youtube.com/vi/0ZjhirfcNns/hqdefault.jpg" alt="Video 3">
+      <p>Project 3</p>
+    </div>
+    <div class="thumbnail" data-video-id="07vxSxdZ-YU">
+      <img src="https://img.youtube.com/vi/07vxSxdZ-YU/hqdefault.jpg" alt="Video 4">
+      <p>Project 4</p>
+    </div>
+    <div class="thumbnail" data-video-id="EDI2X-bguTM">
+      <img src="https://img.youtube.com/vi/EDI2X-bguTM/hqdefault.jpg" alt="Video 5">
+      <p>Project 5</p>
+    </div>
+    <div class="thumbnail" data-video-id="XAZi5SQXCKk">
+      <img src="https://img.youtube.com/vi/XAZi5SQXCKk/hqdefault.jpg" alt="Video 6">
+      <p>Project 6</p>
+    </div>
+    <div class="thumbnail" data-video-id="ufgSjsOdc9A">
+      <img src="https://img.youtube.com/vi/ufgSjsOdc9A/hqdefault.jpg" alt="Video 7">
+      <p>Project 7</p>
+    </div>
+    <div class="thumbnail" data-video-id="fySEu6rbRfU">
+      <img src="https://img.youtube.com/vi/fySEu6rbRfU/hqdefault.jpg" alt="Video 8">
+      <p>Project 8</p>
+    </div>
+    <div class="thumbnail" data-video-id="zmlVR9a7QT4">
+      <img src="https://img.youtube.com/vi/zmlVR9a7QT4/hqdefault.jpg" alt="Video 9">
+      <p>Project 9</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="video-container">
+        <iframe id="youtubePlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('youtubePlayer');
+    const closeBtn = document.querySelector('.close');
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const videoId = thumb.getAttribute('data-video-id');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      iframe.src = '';
+      document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        iframe.src = '';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        modal.style.display = 'none';
+        iframe.src = '';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
